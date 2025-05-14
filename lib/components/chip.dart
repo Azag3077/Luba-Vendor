@@ -39,6 +39,46 @@ class CustomChip extends StatelessWidget {
   }
 }
 
+class CustomChip2 extends StatelessWidget {
+  const CustomChip2({
+    super.key,
+    required this.icon,
+    required this.text,
+  });
+
+  final Widget icon;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 6.0,
+        vertical: 6.0,
+      ),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(6.0),
+        border: Border.all(color: AppColors.green600),
+      ),
+      child: Row(
+        spacing: 5.0,
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          icon,
+          Text(
+            text,
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              color: AppColors.primary,
+              fontSize: 11.0,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class DistanceChip extends StatelessWidget {
   const DistanceChip(this.distanceInKm, {super.key});
 

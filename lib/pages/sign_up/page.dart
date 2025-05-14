@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'components/page_indicator.dart';
-import 'page_views/bank_details/view.dart';
+import 'page_views/business_details/view.dart';
 import 'page_views/personal_details/view.dart';
-import 'page_views/terms_and_condition/view.dart';
 import 'page_views/verification_details/view.dart';
-import 'page_views/verify_identity/view.dart';
 import 'provider.dart';
 
 class SignUpPage extends ConsumerStatefulWidget {
@@ -21,12 +19,8 @@ class SignUpPage extends ConsumerStatefulWidget {
 class _SignUpPageState extends ConsumerState<SignUpPage> {
   final _pageController = PageController();
   final _personalDetailsFormKey = GlobalKey<FormState>();
+  final _businessDetailsFormKey = GlobalKey<FormState>();
   final _verificationDetailsFormKey = GlobalKey<FormState>();
-  final _vehicleBrandFieldKey = GlobalKey<FormFieldState<String>>();
-
-  final _bankDetailsFormKey = GlobalKey<FormState>();
-  final _verifyIdentityFormKey = GlobalKey<FormState>();
-  final _termsAndConditionsAgreementFormKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -36,10 +30,8 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
       notifier.initialize(
         pageController: _pageController,
         personalDetailsFormKey: _personalDetailsFormKey,
+        businessDetailsFormKey: _businessDetailsFormKey,
         verificationDetailsFormKey: _verificationDetailsFormKey,
-        bankDetailsFormKey: _bankDetailsFormKey,
-        verifyIdentityFormKey: _verifyIdentityFormKey,
-        termsAndConditionsAgreementFormKey: _termsAndConditionsAgreementFormKey,
       );
     });
   }
@@ -64,7 +56,7 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
           title: Padding(
             padding: const EdgeInsets.only(right: 8.0),
             child: PageIndicator(
-              length: 5,
+              length: 3,
               currentIndex: pageIndex,
             ),
           ),
@@ -78,33 +70,19 @@ class _SignUpPageState extends ConsumerState<SignUpPage> {
                 onPageChanged: notifier.updatePageIndex,
                 physics: const NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  PersonalDetailsPageView(
-                    formKey: _personalDetailsFormKey,
-                  ),
-                  VerificationDetailsPageView(
-                    formKey: _verificationDetailsFormKey,
-                    vehicleBrandFieldKey: _vehicleBrandFieldKey,
-                  ),
-                  BankDetailsPageView(
-                    formKey: _bankDetailsFormKey,
-                  ),
-                  VerifyIdentityPageView(
-                    formKey: _verifyIdentityFormKey,
-                  ),
-                  TermsAndConditionPageView(
-                    formKey: _termsAndConditionsAgreementFormKey,
-                  ),
+                  PersonalDetailsPageView(_personalDetailsFormKey),
+                  BusinessDetailsPageView(_businessDetailsFormKey),
+                  VerificationDetailsPageView(_verificationDetailsFormKey),
                 ],
               ),
             ),
-            if (pageIndex != 3)
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: FilledButton(
-                  onPressed: () => notifier.onContinue(context),
-                  child: const Center(child: Text('Continue')),
-                ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: FilledButton(
+                onPressed: () => notifier.onContinue(context),
+                child: const Center(child: Text('Continue')),
               ),
+            ),
             const SizedBox(height: 16.0),
           ],
         ),

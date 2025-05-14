@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../components/place_holders.dart';
-import '../../../core/constants/colors.dart';
-import '../components/card.dart';
 import '../../../components/no_order_page.dart';
+import '../../../components/place_holders.dart';
+import '../components/card.dart';
 import '../provider.dart';
 import 'provider.dart';
 
@@ -31,24 +30,29 @@ class OngoingPageView extends ConsumerWidget {
           ],
         );
       },
-      loading: () =>
-      const Padding(
+      loading: () => const Padding(
         padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
         child: CustomLoadingWidget(showBottom: false),
       ),
       data: (orders) {
-        if (orders.isEmpty) return const NoOrderPage('No ongoing orders');
+        if (orders.isEmpty) {
+          return const NoOrderPage(
+            'Looks like you haven’t '
+            'received any orders at the moment.',
+          );
+        }
 
-        return ListView.builder(
+        return ListView.separated(
           itemCount: orders.length,
+          padding: const EdgeInsets.all(16.0),
+          separatorBuilder: (context, int index) =>
+              const SizedBox(height: 14.0),
           itemBuilder: (context, int index) {
             final order = orders.elementAt(index);
             return OrderCard(
               order: order,
-              actionBtnText: 'Cancel delivery',
-              actionBtnColor: AppColors.red400,
-              onViewDetails: () => notifier.onViewDetails(context, order),
-              onMainActionBnt: () => notifier.onAccept(context, order),
+              onReject: () => notifier.onReject(context, order),
+              onAccept: () => notifier.onAccept(context, order),
             );
           },
         );

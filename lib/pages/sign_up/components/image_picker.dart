@@ -11,6 +11,9 @@ import '../../../core/constants/constants.dart';
 class ImagePickerContainer extends StatelessWidget {
   const ImagePickerContainer({
     super.key,
+    this.icon,
+    this.titleText,
+    this.subtitleText,
     required this.labelText,
     this.labelTextStyle,
     this.imagePath,
@@ -21,6 +24,9 @@ class ImagePickerContainer extends StatelessWidget {
 
   static bool _imagePickerIsActive = false;
 
+  final String? icon;
+  final String? titleText;
+  final String? subtitleText;
   final String labelText;
   final TextStyle? labelTextStyle;
   final String? imagePath;
@@ -72,7 +78,7 @@ class ImagePickerContainer extends StatelessWidget {
                 color: AppColors.primary,
               ),
               child: SizedBox(
-                height: height ?? 150.0,
+                height: height ?? 250.0,
                 child: MaterialButton(
                   onPressed: () => _onTap(state),
                   elevation: 0,
@@ -89,10 +95,22 @@ class ImagePickerContainer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       if (state.value == null) ...[
-                        const Icon(Icons.add, color: AppColors.primary),
-                        const Text(
-                          'Upload Picture',
-                          style: TextStyle(
+                        if (icon == null)
+                          const Icon(Icons.add, color: AppColors.primary)
+                        else
+                          Image.asset(icon!),
+                        if (titleText != null)
+                          Text(
+                            titleText!,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w500,
+                              color: AppColors.primary,
+                              fontSize: 14.0,
+                            ),
+                          ),
+                        Text(
+                          subtitleText ?? 'Upload Picture',
+                          style: const TextStyle(
                             fontSize: 12.0,
                             fontWeight: FontWeight.w500,
                             color: Color(0xFF667085),
@@ -120,10 +138,7 @@ class ImagePickerContainer extends StatelessWidget {
                     Icon(
                       Icons.error,
                       size: 16.0,
-                      color: Theme
-                          .of(context)
-                          .colorScheme
-                          .error,
+                      color: Theme.of(context).colorScheme.error,
                     ),
                     const SizedBox(width: 4.0),
                     Expanded(
@@ -131,10 +146,7 @@ class ImagePickerContainer extends StatelessWidget {
                         state.errorText ?? '',
                         style: TextStyle(
                           fontSize: 12.0,
-                          color: Theme
-                              .of(context)
-                              .colorScheme
-                              .error,
+                          color: Theme.of(context).colorScheme.error,
                         ),
                       ),
                     ),
@@ -182,8 +194,7 @@ class DottedBorderPainter extends CustomPainter {
     }
 
     if (bgColor != null) {
-      final paint = Paint()
-        ..color = bgColor!;
+      final paint = Paint()..color = bgColor!;
       final a = rrect.deflate(0);
       canvas.drawRRect(a, paint);
     }
@@ -193,8 +204,7 @@ class DottedBorderPainter extends CustomPainter {
       ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke;
 
-    final path = Path()
-      ..addRRect(rrect);
+    final path = Path()..addRRect(rrect);
 
     final dashSpace = gap;
     double distance = 0.0;
@@ -212,7 +222,7 @@ class DottedBorderPainter extends CustomPainter {
   @override
   bool shouldRepaint(DottedBorderPainter oldDelegate) =>
       oldDelegate.color != color ||
-          oldDelegate.radius != radius ||
-          oldDelegate.strokeWidth != strokeWidth ||
-          oldDelegate.gap != gap;
+      oldDelegate.radius != radius ||
+      oldDelegate.strokeWidth != strokeWidth ||
+      oldDelegate.gap != gap;
 }

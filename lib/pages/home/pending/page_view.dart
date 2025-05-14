@@ -30,23 +30,29 @@ class PendingPageView extends ConsumerWidget {
           ],
         );
       },
-      loading: () =>
-      const Padding(
+      loading: () => const Padding(
         padding: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
         child: CustomLoadingWidget(showBottom: false),
       ),
       data: (orders) {
-        if (orders.isEmpty) return const NoOrderPage('No pending orders');
+        if (orders.isEmpty) {
+          return const NoOrderPage(
+            'Looks like you haven’t '
+            'received any orders at the moment.',
+          );
+        }
 
-        return ListView.builder(
+        return ListView.separated(
           itemCount: orders.length,
+          padding: const EdgeInsets.all(16.0),
+          separatorBuilder: (context, int index) =>
+              const SizedBox(height: 14.0),
           itemBuilder: (context, int index) {
             final order = orders.elementAt(index);
             return OrderCard(
               order: order,
-              actionBtnText: 'Accept (20s)',
-              onViewDetails: () => notifier.onViewDetails(context, order),
-              onMainActionBnt: () => notifier.onAccept(context, order),
+              onReject: () => notifier.onReject(context, order),
+              onAccept: () => notifier.onAccept(context, order),
             );
           },
         );

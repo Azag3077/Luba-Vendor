@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../core/constants/assets.dart';
 import '../../core/constants/colors.dart';
 import '../account/page.dart';
-import '../deliveries/page.dart';
+import '../products/page.dart';
 import '../earnings/page.dart';
 import '../home/page.dart';
 import 'components/nav_bar_item.dart';
@@ -18,7 +18,7 @@ class DashboardPage extends ConsumerWidget {
   List<Widget> get _screens =>
       const <Widget>[
         HomePage(),
-        DeliveriesPage(),
+        ProductsPage(),
         EarningsPage(),
         Scaffold(),
         AccountPage(),
@@ -74,12 +74,12 @@ class DashboardPage extends ConsumerWidget {
             ),
             items: <BottomNavigationBarItem>[
               CustomBottomNavigationBarItem(
-                label: 'Home',
-                assetName: ImageAssetNames.home,
+                label: 'Orders',
+                assetName: ImageAssetNames.order,
                 selected: currentPageIndex == 0,
               ),
               CustomBottomNavigationBarItem(
-                label: 'Deliveries',
+                label: 'Products',
                 assetName: ImageAssetNames.deliveries,
                 selected: currentPageIndex == 1,
               ),
@@ -89,8 +89,8 @@ class DashboardPage extends ConsumerWidget {
                 selected: currentPageIndex == 2,
               ),
               CustomBottomNavigationBarItem(
-                label: 'Support',
-                assetName: ImageAssetNames.support,
+                label: 'Insights',
+                assetName: ImageAssetNames.insights,
                 selected: currentPageIndex == 3,
               ),
               CustomBottomNavigationBarItem(

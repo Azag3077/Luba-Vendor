@@ -8,9 +8,15 @@ class ImageAssetNames {
   static const car = '$_root/car.png';
   static const bike = '$_root/bike.png';
   static const bank = '$_root/bank.png';
+  static const error = '$_root/error.png';
+  static const success = '$_root/success.png';
+  static const documentUpload = '$_root/document-upload.png';
   static const doubleCheckmark = '$_root/double-checkmark.png';
   static const profileReview = '$_root/profile-review.png';
   static const contactSupport = '$_root/contact-support.png';
+  static const orderFill = '$_root/order-fill.png';
+  static const menuBoard = '$_root/menu-board.png';
+  static const truckFast = '$_root/truck-fast.png';
 
   static const homeCardEllipse = '$_root/home-card-ellipse.png';
   static const blankList = '$_root/blank-list.png';
@@ -61,10 +67,10 @@ class ImageAssetNames {
   static const tracking = '$_homeRoot/tracking.png';
 
   static const _bnbRoot = '$_root/bottom_nav_bar';
-  static const home = '$_bnbRoot/home.png';
+  static const order = '$_bnbRoot/order.png';
   static const deliveries = '$_bnbRoot/shopping-bag.png';
   static const earnings = '$_bnbRoot/wallet.png';
-  static const support = '$_bnbRoot/message.png';
+  static const insights = '$_bnbRoot/insights.png';
   static const account = '$_bnbRoot/profile-circle.png';
 }
 

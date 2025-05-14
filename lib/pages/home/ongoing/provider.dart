@@ -10,13 +10,15 @@ final ongoingOrderFutureProvider = FutureProvider<List<Order>>((ref) async {
   final useless = ref.watch(uselessProvider);
   return List.generate(useless ? 1 : 0, (index) {
     return Order(
-      id: 'id$index',
+      id: 49065 + index,
       username: 'Iya Moria',
       location: r'UNILAG',
-      address: r'Yaba road, idi araba street',
+      pickupAddress: r'Shoprite Ikeja City mall, Ikeja City mall, awolowo',
+      dropOffAddress: r'Yaba road, idi araba street',
       distanceInKm: 2.2,
       price: 1500,
       status: OrderStatus.ongoing,
+      createdOn: DateTime.now().subtract(const Duration(days: 3)),
     );
   });
 });

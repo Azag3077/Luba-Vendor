@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import '../../pages/add_bank/page.dart';
 import '../../pages/boost_earnings/page.dart';
 import '../../pages/dashboard/page.dart';
-import '../../pages/deliveries/page.dart';
+import '../../pages/products/page.dart';
 import '../../pages/delivery_complete/page.dart';
 import '../../pages/delivery_issues/page.dart';
-import '../../pages/delivery_order_details/page.dart';
+import '../../pages/product/page.dart';
 import '../../pages/forgot_password/page.dart';
 import '../../pages/leaderboard/page.dart';
 import '../../pages/notifications/page.dart';
@@ -29,14 +29,11 @@ import '../../pages/withdraw_earnings/page.dart';
 export 'router.dart';
 
 T _getArgs<T>(BuildContext context) =>
-    ModalRoute
-        .of(context)!
-        .settings
-        .arguments as T;
+    ModalRoute.of(context)!.settings.arguments as T;
 
 final appRoutes = <String, WidgetBuilder>{
   '/': (context) => const SplashScreen(),
-  // '/': (context) => const DashboardPage(),
+  '/': (context) => const DashboardPage(),
   SignInPage.routeName: (context) => SignInPage(),
   SignUpPage.routeName: (context) => const SignUpPage(),
   ProfileReviewPage.routeName: (context) => const ProfileReviewPage(),
@@ -54,9 +51,8 @@ final appRoutes = <String, WidgetBuilder>{
       ReportDetailsPage(_getArgs(context)),
   ReportSubmittedPage.routeName: (context) => const ReportSubmittedPage(),
   DeliveryIssuesPage.routeName: (context) => const DeliveryIssuesPage(),
-  DeliveriesPage.routeName: (context) => const DeliveriesPage(),
-  DeliveryOrderDetailsPage.routeName: (context) =>
-      DeliveryOrderDetailsPage(_getArgs(context)),
+  ProductsPage.routeName: (context) => const ProductsPage(),
+  ProductPage.routeName: (context) => ProductPage(product: _getArgs(context)),
   WithdrawEarningsPage.routeName: (context) => const WithdrawEarningsPage(),
   AddBankPage.routeName: (context) => const AddBankPage(),
   SettingsPage.routeName: (context) => const SettingsPage(),

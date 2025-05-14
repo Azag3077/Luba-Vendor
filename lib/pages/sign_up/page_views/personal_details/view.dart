@@ -8,14 +8,10 @@ import '../../../../../components/textfields.dart';
 import '../../../../../core/constants/enums.dart';
 import '../../../../../core/extensions/string.dart';
 import '../../../../../core/validators.dart';
-import '../../components/date_picker.dart';
 import 'provider.dart';
 
 class PersonalDetailsPageView extends ConsumerWidget {
-  const PersonalDetailsPageView({
-    super.key,
-    required this.formKey,
-  });
+  const PersonalDetailsPageView(this.formKey, {super.key});
 
   final GlobalKey<FormState> formKey;
 
@@ -26,82 +22,69 @@ class PersonalDetailsPageView extends ConsumerWidget {
 
     final textTheme = Theme.of(context).textTheme;
 
-    return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: AutofillGroup(
-        child: Form(
-          key: formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Personal Details',
-                style: textTheme.headlineMedium,
+    return AutofillGroup(
+      child: Form(
+        key: formKey,
+        child: ListView(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          children: <Widget>[
+            Text('Personal Details', style: textTheme.headlineMedium),
+            const SizedBox(height: 24.0),
+            CustomTextField(
+              labelText: 'First name',
+              initialValue: state.firstname,
+              onChanged: notifier.updateFirstname,
+              hintText: 'Enter name',
+              keyboardType: TextInputType.name,
+              textInputAction: TextInputAction.next,
+              textCapitalization: TextCapitalization.words,
+              validator: Validator.name,
+              autofillHints: const [AutofillHints.givenName],
+            ),
+            CustomTextField(
+              labelText: 'Last name',
+              initialValue: state.lastname,
+              onChanged: notifier.updateLastname,
+              hintText: 'Enter last name',
+              keyboardType: TextInputType.name,
+              textCapitalization: TextCapitalization.words,
+              textInputAction: TextInputAction.next,
+              validator: Validator.name,
+              autofillHints: const [AutofillHints.familyName],
+            ),
+            SelectionButton<Gender>(
+              labelText: 'Gender',
+              hintText: 'Select gender',
+              initialValue: state.gender,
+              bottomSheetItems: Gender.values,
+              textBuilder: (gender) => gender?.name.title,
+              validator: (gender) => Validator.name(gender?.name.title),
+              onSaved: notifier.updateGender,
+            ),
+            CustomTextField(
+              labelText: 'Phone Number',
+              initialValue: state.phone,
+              onChanged: notifier.onPhoneChanged,
+              hintText: 'Enter your phone number',
+              keyboardType: TextInputType.phone,
+              inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+              textInputAction: TextInputAction.next,
+              validator: Validator.validatePhoneNumber,
+              prefixIcon: PhoneNumberFieldPrefixButton(
+                country: state.country,
+                onCodeTap: () => notifier.onCodeTap(context),
               ),
-              const SizedBox(height: 24.0),
-              CustomTextField(
-                labelText: 'First name',
-                initialValue: state.firstname,
-                onChanged: notifier.updateFirstname,
-                hintText: 'Enter name',
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-                validator: Validator.name,
-                autofillHints: const [AutofillHints.givenName],
-              ),
-              CustomTextField(
-                labelText: 'Last name',
-                initialValue: state.lastname,
-                onChanged: notifier.updateLastname,
-                hintText: 'Last name',
-                keyboardType: TextInputType.name,
-                textInputAction: TextInputAction.next,
-                validator: Validator.name,
-                autofillHints: const [AutofillHints.familyName],
-              ),
-              SelectionButton<Gender>(
-                labelText: 'Gender',
-                hintText: 'Select gender',
-                initialValue: state.gender,
-                bottomSheetItems: Gender.values,
-                textBuilder: (gender) => gender?.name.title,
-                validator: (gender) => Validator.name(gender?.name.title),
-                onSaved: notifier.updateGender,
-              ),
-              CustomTextField(
-                labelText: 'Phone Number',
-                initialValue: state.phone,
-                onChanged: notifier.onPhoneChanged,
-                hintText: 'Enter your phone number',
-                keyboardType: TextInputType.phone,
-                inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                textInputAction: TextInputAction.next,
-                validator: Validator.validatePhoneNumber,
-                prefixIcon: PhoneNumberFieldPrefixButton(
-                  country: state.country,
-                  onCodeTap: () => notifier.onCodeTap(context),
-                ),
-              ),
-              CustomTextField(
-                labelText: 'Email',
-                initialValue: state.email,
-                onChanged: notifier.onEmailChanged,
-                hintText: 'Enter your email',
-                keyboardType: TextInputType.emailAddress,
-                textInputAction: TextInputAction.next,
-                validator: Validator.email,
-              ),
-              DatePickerContainer(
-                datetime: state.dob,
-                labelText: 'Date of birth',
-                validator: (value) {
-                  if (value != null) return null;
-                  return 'This field is required';
-                },
-                onSaved: notifier.updateDOB,
-              ),
-            ],
-          ),
+            ),
+            CustomTextField(
+              labelText: 'Email',
+              initialValue: state.email,
+              onChanged: notifier.onEmailChanged,
+              hintText: 'Enter your email',
+              keyboardType: TextInputType.emailAddress,
+              textInputAction: TextInputAction.next,
+              validator: Validator.email,
+            ),
+          ],
         ),
       ),
     );

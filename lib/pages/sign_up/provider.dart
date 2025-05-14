@@ -19,10 +19,8 @@ final signUpPageProvider =
 class _Notifier extends AutoDisposeNotifier<int> {
   late final PageController _pageController;
   late final GlobalKey<FormState> _personalDetailsFormKey;
+  late final GlobalKey<FormState> _businessDetailsFormKey;
   late final GlobalKey<FormState> _verificationDetailsFormKey;
-  late final GlobalKey<FormState> _bankDetailsFormKey;
-  late final GlobalKey<FormState> _verifyIdentityFormKey;
-  late final GlobalKey<FormState> _termsAndConditionsAgreementFormKey;
 
   @override
   int build() {
@@ -40,17 +38,13 @@ class _Notifier extends AutoDisposeNotifier<int> {
   void initialize({
     required PageController pageController,
     required GlobalKey<FormState> personalDetailsFormKey,
+    required GlobalKey<FormState> businessDetailsFormKey,
     required GlobalKey<FormState> verificationDetailsFormKey,
-    required GlobalKey<FormState> bankDetailsFormKey,
-    required GlobalKey<FormState> verifyIdentityFormKey,
-    required GlobalKey<FormState> termsAndConditionsAgreementFormKey,
   }) {
     _pageController = pageController;
     _personalDetailsFormKey = personalDetailsFormKey;
+    _businessDetailsFormKey = businessDetailsFormKey;
     _verificationDetailsFormKey = verificationDetailsFormKey;
-    _bankDetailsFormKey = bankDetailsFormKey;
-    _verifyIdentityFormKey = verifyIdentityFormKey;
-    _termsAndConditionsAgreementFormKey = termsAndConditionsAgreementFormKey;
   }
 
   void onPopInvokedWithResult(bool didPop, bool? result) {
@@ -62,17 +56,15 @@ class _Notifier extends AutoDisposeNotifier<int> {
   Future<void> onContinue(BuildContext context) async {
     late final GlobalKey<FormState> formKey;
     if (state == 0) formKey = _personalDetailsFormKey;
-    if (state == 1) formKey = _verificationDetailsFormKey;
-    if (state == 2) formKey = _bankDetailsFormKey;
-    if (state == 3) formKey = _verifyIdentityFormKey;
-    if (state == 4) formKey = _termsAndConditionsAgreementFormKey;
+    if (state == 1) formKey = _businessDetailsFormKey;
+    if (state == 2) formKey = _verificationDetailsFormKey;
 
     formKey.currentState?.reset();
 
     await 200.ms.delayed;
     if (!(formKey.currentState?.validate() ?? true)) return;
 
-    if (state != 4) {
+    if (state != 2) {
       _navigateToNextPageView(true);
     } else if (context.mounted) {
       if (context.mounted) _registerUser(context);
@@ -127,32 +119,8 @@ class _Notifier extends AutoDisposeNotifier<int> {
     pushNamedAndRemoveUntil(
       context,
       ProfileReviewPage.routeName,
-      // until: GetStartedPage.routeName,
+      until: SignInPage.routeName,
     );
-
-    // final result = await pushNamed(
-    //   context,
-    //   VerifyOtpPage.routeName,
-    //   arguments: _getPhoneNumberWithCountryCode,
-    // );
-    //
-    // if (result != true || !context.mounted) return;
-    //
-    // await pushNamed(
-    //   context,
-    //   SuccessfulPage.routeName,
-    //   arguments: const SuccessfulPageArgs(
-    //     icon: ImageAssetNames.successful,
-    //     title: 'Verification Successful!',
-    //     subtitle: 'Your account has been successfully verified. '
-    //         "You're all set to start using the app.",
-    //   ),
-    // );
-    //
-    // if (!context.mounted) return;
-    //
-    // // pushReplacementNamed(context, GrantLocationPermissionPage.routeName);
-    // // pushNamed(context, GrantLocationPermissionPage.routeName);
   }
 
   void onSignIn(BuildContext context) =>

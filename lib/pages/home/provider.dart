@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../core/extensions/num_duration.dart';
 import '../../core/routers/app_routes.dart';
 import '../../models/order.dart';
-import '../order_details/page.dart';
 import '../notifications/page.dart';
+import 'components/bottom_sheet.dart';
 
 final homePageProvider = NotifierProvider<_Notifier, _State>(_Notifier.new);
 
@@ -33,20 +32,23 @@ class _Notifier extends Notifier<_State> {
   @override
   _State build() => const _State();
 
-  void onTabSwitch(PageController controller, int index) {
-    onPageChanged(index);
-    controller.animateToPage(index, duration: 200.ms, curve: Curves.linear);
-  }
-
-  void onPageChanged(int index) => state = state.copyWith(index: index);
-
   void updatePage(double value) => state = state.copyWith(page: value);
+
+  Future<void> onUserProfile(BuildContext context) async {
+    final choice = await showModalBottomSheet(
+      context: context,
+      builder: (_) => const ResProfileBottomSheetContent(),
+    );
+
+    if (choice == null || !context.mounted) return;
+
+    /// Do you magic thingy...
+  }
 
   void onBellIcon(BuildContext context) =>
       pushNamed(context, NotificationsPage.routeName);
 
-  void onViewDetails(BuildContext context, Order order) =>
-      pushNamed(context, OrderDetailsPage.routeName, arguments: order);
+  void onReject(BuildContext context, Order order) {}
 
   void onAccept(BuildContext context, Order order) {}
 

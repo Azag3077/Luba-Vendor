@@ -58,8 +58,9 @@ class ProfileReviewPage extends StatelessWidget {
                 ),
               ),
               const Text(
-                'We would send you an invite for an on-site '
-                'training once your profile review is satisfactory',
+                'Once its approved, you will receive an email and '
+                'can begin to showcase your service and grow '
+                'your business. thank you for choosing Luba!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 13.0,
@@ -91,9 +92,9 @@ class ProfileReviewPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 4.0),
                     _buildBulletinText(
-                        'You don’t get a main from us after 7 days'),
+                        'You don’t get a mail from us after 7 days'),
                     _buildBulletinText(
-                        'You need to change any details your used'),
+                        'You need to change any details you used'),
                   ],
                 ),
               ),

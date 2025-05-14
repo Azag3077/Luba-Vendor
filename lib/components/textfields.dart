@@ -38,6 +38,7 @@ class CustomTextField extends StatelessWidget {
     this.maxLines = 1,
     this.focusNode,
     this.fillColor,
+    this.inactiveBorderColor,
     this.autofillHints = const <String>[],
   }) : margin = margin ?? const EdgeInsets.only(bottom: 16.0);
   final TextEditingController? controller;
@@ -62,6 +63,7 @@ class CustomTextField extends StatelessWidget {
   final bool canRequestFocus;
   final bool filled;
   final Color? fillColor;
+  final Color? inactiveBorderColor;
   final Widget? prefixIcon;
   final IconData? prefixIconData;
   final Widget? suffixIcon;
@@ -110,6 +112,7 @@ class CustomTextField extends StatelessWidget {
                 canRequestFocus: canRequestFocus,
                 maxLength: maxLength,
                 maxLines: maxLines,
+                // minLines: 1,
                 autofillHints: autofillHints,
                 enableSuggestions: enableSuggestions,
                 onChanged: (value) => _onChanged(value, state),
@@ -123,6 +126,7 @@ class CustomTextField extends StatelessWidget {
                 ),
                 decoration: InputDecoration(
                   hintText: hintText,
+                  alignLabelWithHint: true, // important for multiline
                   filled: filled,
                   fillColor: fillColor ?? AppColors.textFieldBg,
                   hintStyle: const TextStyle(
@@ -132,8 +136,8 @@ class CustomTextField extends StatelessWidget {
                   error: showError ? const SizedBox.shrink() : null,
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(radius),
-                    borderSide: const BorderSide(
-                      color: AppColors.borderColor,
+                    borderSide: BorderSide(
+                      color: inactiveBorderColor ?? AppColors.borderColor,
                       width: 1.5,
                     ),
                   ),
