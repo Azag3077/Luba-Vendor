@@ -27,6 +27,7 @@ abstract final class AppColors {
   static const Color greyOutline = Color(0xFFE9E9E9);
   static const Color orange50 = Color(0xFFFFF2E8);
   static const Color green50 = Color(0xFFF0FDE8);
+  static const Color green200 = Color(0xFFBCF79F);
   static const Color green600 = Color(0xFF37A010);
   static const Color green500 = Color(0xFF4CC81A);
 

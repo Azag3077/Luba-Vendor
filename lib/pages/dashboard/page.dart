@@ -6,6 +6,7 @@ import '../../core/constants/colors.dart';
 import '../account/page.dart';
 import '../products/page.dart';
 import '../earnings/page.dart';
+import '../insights/page.dart';
 import '../home/page.dart';
 import 'components/nav_bar_item.dart';
 import 'provider.dart';
@@ -15,12 +16,11 @@ class DashboardPage extends ConsumerWidget {
 
   static const routeName = '/dashboard';
 
-  List<Widget> get _screens =>
-      const <Widget>[
+  List<Widget> get _screens => const <Widget>[
         HomePage(),
         ProductsPage(),
         EarningsPage(),
-        Scaffold(),
+        InsightsPage(),
         AccountPage(),
       ];
 
@@ -57,7 +57,7 @@ class DashboardPage extends ConsumerWidget {
             ],
           ),
           child: BottomNavigationBar(
-            onTap: (index) => notifier.updatePageIndex(index, context),
+            onTap: notifier.updatePageIndex,
             currentIndex: currentPageIndex,
             backgroundColor: Colors.white,
             selectedItemColor: AppColors.primary,

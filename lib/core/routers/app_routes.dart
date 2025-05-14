@@ -8,7 +8,7 @@ import '../../pages/delivery_complete/page.dart';
 import '../../pages/delivery_issues/page.dart';
 import '../../pages/product/page.dart';
 import '../../pages/forgot_password/page.dart';
-import '../../pages/leaderboard/page.dart';
+import '../../pages/rating/page.dart';
 import '../../pages/notifications/page.dart';
 import '../../pages/order_details/page.dart';
 import '../../pages/privacy_policy/page.dart';
@@ -56,7 +56,7 @@ final appRoutes = <String, WidgetBuilder>{
   WithdrawEarningsPage.routeName: (context) => const WithdrawEarningsPage(),
   AddBankPage.routeName: (context) => const AddBankPage(),
   SettingsPage.routeName: (context) => const SettingsPage(),
-  LeaderboardPage.routeName: (context) => const LeaderboardPage(),
+  RatingPage.routeName: (context) => const RatingPage(),
   BoostEarningsPage.routeName: (context) => const BoostEarningsPage(),
   ResetPinPage.routeName: (context) => const ResetPinPage(),
   PrivacyPolicyPage.routeName: (context) => const PrivacyPolicyPage(),

@@ -11,69 +11,47 @@ import 'provider.dart';
 class AccountPage extends ConsumerWidget {
   const AccountPage({super.key});
 
-  Widget _buildRow({
-    required IconData icon,
+  Widget _buildListTile({
+    required String leadingIcon,
     required String text,
-    required String value,
-    bool isVerified = false,
+    required VoidCallback onTap,
+    bool showTrailing = true,
+    Color? color,
   }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 16.0,
-        vertical: 12.0,
-      ),
-      child: Row(
-        spacing: 4.0,
-        children: <Widget>[
-          Icon(
-            icon,
-            size: 18.0,
-            color: AppColors.hintColor,
-          ),
-          Text(
+    return Column(
+      children: <Widget>[
+        ListTile(
+          onTap: onTap,
+          leading: Image.asset(leadingIcon),
+          horizontalTitleGap: 10.0,
+          title: Text(
             text,
-            style: const TextStyle(
+            style: TextStyle(
               fontWeight: FontWeight.w600,
-              color: AppColors.hintColor,
               fontSize: 13.0,
+              color: color,
             ),
           ),
-          Expanded(
-            child: Row(
-              spacing: 8.0,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                if (isVerified)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 9.0,
-                      vertical: 3.0,
-                    ),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30.0),
-                      color: AppColors.green50,
-                    ),
-                    child: const Text(
-                      'Verified',
-                      style: TextStyle(
-                        color: AppColors.containerBg1,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 11.0,
-                      ),
-                    ),
-                  ),
-                Text(
-                  value,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 13.0,
-                  ),
-                ),
-              ],
-            ),
+          trailing: showTrailing
+              ? const Icon(
+                  color: AppColors.grey,
+                  Icons.arrow_forward,
+                  size: 16.0,
+                )
+              : null,
+          visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 8.0,
+            vertical: 10.0,
           ),
-        ],
-      ),
+        ),
+        const Divider(
+          height: 0,
+          indent: 16.0,
+          endIndent: 16.0,
+          color: AppColors.greyOutline,
+        ),
+      ],
     );
   }
 
@@ -85,13 +63,38 @@ class AccountPage extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Account'),
         actions: <Widget>[
-          IconButton(
-            onPressed: () => notifier.onSettings(context),
-            icon: const Icon(
-              Icons.settings_outlined,
-              color: AppColors.hintColor,
+          MaterialButton(
+            onPressed: () {},
+            elevation: 0,
+            highlightElevation: 0,
+            color: AppColors.green50,
+            shape: const StadiumBorder(
+              side: BorderSide(
+                color: AppColors.green200,
+                width: 2.0,
+              ),
+            ),
+            child: const Row(
+              spacing: 4.0,
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Icon(
+                  CupertinoIcons.ellipses_bubble,
+                  size: 18.0,
+                  color: AppColors.primary,
+                ),
+                Text(
+                  'Support',
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.primary,
+                  ),
+                ),
+              ],
             ),
           ),
+          const SizedBox(width: 12.0),
         ],
       ),
       body: ListView(
@@ -141,140 +144,36 @@ class AccountPage extends ConsumerWidget {
           ),
           const SizedBox(height: 8.0),
 
-          ///
-          _buildRow(
-            icon: Icons.email_outlined,
-            text: 'Email',
-            value: maskEmailAddress('OluwabodeMicheal@gmail.com'),
-            isVerified: true,
+          _buildListTile(
+            text: 'Profile',
+            leadingIcon: ImageAssetNames.profile,
+            onTap: () => notifier.onProfile(context),
           ),
-          _buildRow(
-            icon: CupertinoIcons.phone,
-            text: 'Phone Number',
-            value: '08109755721',
+          _buildListTile(
+            text: 'Reset PIN',
+            leadingIcon: ImageAssetNames.lock,
+            onTap: () => notifier.onResetPIN(context),
           ),
-          _buildRow(
-            icon: Icons.location_on_outlined,
-            text: 'Location',
-            value: r'Ikeja',
+          _buildListTile(
+            text: 'Payment & Payout',
+            leadingIcon: ImageAssetNames.walletMoney,
+            onTap: () => notifier.onPaymentPayout(context),
           ),
-          const SizedBox(height: 8.0),
-
-          /// The Leaderboard Container
-          MaterialButton(
-            onPressed: () => notifier.onLeaderboard(context),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 12.0,
-            ),
-            elevation: 0,
-            highlightElevation: 0,
-            color: AppColors.containerFg,
-            child: Row(
-              spacing: 10.0,
-              children: <Widget>[
-                Image.asset(ImageAssetNames.star),
-                const Expanded(
-                  child: Column(
-                    spacing: 4.0,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'View leaderboard',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.0,
-                        ),
-                      ),
-                      Text(
-                        'See your current position against others',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          color: AppColors.primary,
-                          fontSize: 11.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Icon(
-                  Icons.arrow_forward,
-                  color: AppColors.hintColor,
-                  size: 18.0,
-                ),
-              ],
-            ),
+          _buildListTile(
+            text: 'Notifications & Preferences',
+            leadingIcon: ImageAssetNames.notification,
+            onTap: () => notifier.onNotificationsPreferences(context),
           ),
-
-          const SizedBox(height: 16.0),
-
-          ///
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: MaterialButton(
-              onPressed: () => notifier.onBoostEarnings(context),
-              padding: EdgeInsets.zero,
-              color: AppColors.containerFg,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: Stack(
-                children: <Widget>[
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: Image.asset(ImageAssetNames.accountCardEllipse),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.fromLTRB(16.0, 32.0, 8.0, 32.0),
-                    child: Column(
-                      spacing: 8.0,
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        Text(
-                          'Boost Your\nEarnings Today!',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 19.0,
-                          ),
-                        ),
-                        Text(
-                          'Get Paid Instantly After\nEvery Delivery!',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.secText,
-                            fontSize: 13.0,
-                          ),
-                        ),
-                        Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              'Start Now',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                color: AppColors.primary,
-                                fontSize: 13.0,
-                              ),
-                            ),
-                            Icon(
-                              size: 18.0,
-                              Icons.arrow_forward,
-                              color: AppColors.primary,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                  Positioned(
-                    right: 0,
-                    bottom: 0,
-                    child: Image.asset(ImageAssetNames.deliveryBike),
-                  ),
-                ],
-              ),
-            ),
+          _buildListTile(
+            text: 'Security',
+            leadingIcon: ImageAssetNames.securitySafe,
+            onTap: () => notifier.onSecurity(context),
+          ),
+          _buildListTile(
+            text: 'Log Out',
+            showTrailing: false,
+            leadingIcon: ImageAssetNames.logout,
+            onTap: () => notifier.onLogOut(context),
           ),
         ],
       ),

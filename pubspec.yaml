@@ -49,6 +49,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/bottom_nav_bar/
+    - assets/images/account/
 
   fonts:
     - family: Montserrat

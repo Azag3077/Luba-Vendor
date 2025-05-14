@@ -27,6 +27,20 @@ class ImageAssetNames {
   static const send = '$_root/send.png';
   static const like = '$_root/like.png';
 
+  static const bag = '$_root/bag.png';
+  static const box = '$_root/box.png';
+  static const people = '$_root/people.png';
+  static const wallet = '$_root/wallet.png';
+  static const currency = '$_root/currency.png';
+
+  static const _accountRoot = '$_root/account';
+  static const lock = '$_accountRoot/lock.png';
+  static const logout = '$_accountRoot/logout.png';
+  static const notification = '$_accountRoot/notification.png';
+  static const profile = '$_accountRoot/profile-2user.png';
+  static const securitySafe = '$_accountRoot/security-safe.png';
+  static const walletMoney = '$_accountRoot/wallet-money.png';
+
   static const award1 = '$_root/award-1.png';
   static const award2 = '$_root/award-2.png';
   static const award3 = '$_root/award-3.png';
