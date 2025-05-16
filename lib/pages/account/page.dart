@@ -100,48 +100,53 @@ class AccountPage extends ConsumerWidget {
       body: ListView(
         children: <Widget>[
           /// Profile Container
-          Container(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 12.0,
-              vertical: 12.0,
-            ),
-            color: AppColors.text,
-            child: Row(
-              spacing: 10.0,
-              children: <Widget>[
-                const ImageLoader(
-                  '',
-                  width: 48.0,
-                  height: 48.0,
-                  radius: 24.0,
+          const Column(
+            spacing: 4.0,
+            children: <Widget>[
+              ImageLoader(
+                '',
+                width: 56.0,
+                height: 56.0,
+                radius: 56.0,
+              ),
+              SizedBox(height: 8.0),
+              Text(
+                r'Iya Moria - unilag',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
                 ),
-                const Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        r'Oluwabode Micheal',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        'Rider ID: 4214124',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w500,
-                          fontSize: 12.0,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ],
+              ),
+              Text(
+                '12, asihimowo street, Akoka Lagos',
+                style: TextStyle(
+                  fontSize: 13.0,
+                  color: Color(0xFF1D1D21),
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    '3.0',
+                    style: TextStyle(
+                      fontSize: 13.0,
+                      color: Color(0xFF1D1D21),
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-                Image.asset(ImageAssetNames.award3),
-              ],
-            ),
+                  Icon(
+                    Icons.star,
+                    size: 18.0,
+                    color: Color(0xFFF39C12),
+                  ),
+                ],
+              ),
+            ],
           ),
+
+          ///
           const SizedBox(height: 8.0),
 
           _buildListTile(
