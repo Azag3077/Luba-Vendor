@@ -14,3 +14,8 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## The App Design (Figma)
+https://www.figma.com/design/nXb5zZKmCkGhh0ZJtgApyS/Luballogistics?node-id=672-32161&t=JbBvlDZmrzud45At-0
+1 Peter 1:24
+I heard the word 'Sperm'

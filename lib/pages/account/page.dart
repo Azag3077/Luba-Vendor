@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../components/place_holders.dart';
 import '../../core/constants/assets.dart';
 import '../../core/constants/colors.dart';
-import '../../utils/utils.dart';
 import 'provider.dart';
 
 class AccountPage extends ConsumerWidget {
@@ -41,7 +40,7 @@ class AccountPage extends ConsumerWidget {
               : null,
           visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
           contentPadding: const EdgeInsets.symmetric(
-            horizontal: 8.0,
+            horizontal: 16.0,
             vertical: 10.0,
           ),
         ),

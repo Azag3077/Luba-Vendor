@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../components/dialogs.dart';
-import '../../components/snackbar.dart';
+import '../../components/snack_bar.dart';
 import '../../core/constants/assets.dart';
 import '../../core/routers/app_routes.dart';
 import '../../network/api_services/auth.dart';
@@ -37,11 +37,11 @@ class _Notifier extends AutoDisposeNotifier<bool> {
 
     if (result.data!) return _handleSuccess(context);
 
-    showSnackbar(
+    showSnackBar(
       context: context,
       title: result.error!.title,
       subtitle: result.error!.message,
-      type: SnackbarType.error,
+      type: SnackBarType.error,
     );
   }
 

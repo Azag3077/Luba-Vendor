@@ -52,18 +52,21 @@ class LubaVendor extends StatelessWidget {
           labelMedium: TextStyle(
             height: 1.4,
             fontSize: 13.0,
+            letterSpacing: 0,
             color: AppColors.secText,
             fontWeight: FontWeight.w500,
           ),
           titleMedium: TextStyle(
             fontWeight: FontWeight.bold,
             color: AppColors.text,
+            letterSpacing: 0,
             fontSize: 19.0,
             height: 1.4,
           ),
           headlineMedium: TextStyle(
             height: 1.4,
             fontSize: 28.0,
+            letterSpacing: 0,
             color: AppColors.text,
             fontWeight: FontWeight.bold,
           ),

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../components/phone_number_field_prefix_button.dart';
-import '../../components/textfields.dart';
+import '../../components/text_fields.dart';
 import '../../core/constants/assets.dart';
 import '../../core/constants/colors.dart';
 import '../../core/validators.dart';

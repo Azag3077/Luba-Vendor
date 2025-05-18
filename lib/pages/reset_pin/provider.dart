@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../components/dialogs.dart';
-import '../../components/snackbar.dart';
+import '../../components/snack_bar.dart';
 import '../../core/extensions/num_duration.dart';
 import '../../core/routers/app_routes.dart';
 import '../settings/page.dart';
@@ -82,11 +82,11 @@ class _Notifier extends AutoDisposeNotifier<_State> {
 
     pop(context);
 
-    showSnackbar(
+    showSnackBar(
       context: context,
       title: 'Successful!!!',
       subtitle: 'Pin reset was successful.',
-      type: SnackbarType.success,
+      type: SnackBarType.success,
     );
   }
 }

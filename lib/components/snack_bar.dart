@@ -2,91 +2,91 @@ import 'package:flutter/material.dart';
 
 import '../core/extensions/num_duration.dart';
 
-enum SnackbarType { success, info, warning, error }
+enum SnackBarType { success, info, warning, error }
 
-Color _getBgColor(SnackbarType type) {
+Color _getBgColor(SnackBarType type) {
   switch (type) {
-    case SnackbarType.success:
+    case SnackBarType.success:
       return const Color(0xFFF8FFFB);
-    case SnackbarType.info:
+    case SnackBarType.info:
       return const Color(0xFFF2F8FF);
-    case SnackbarType.warning:
+    case SnackBarType.warning:
       return const Color(0xFFFFFBF3);
-    case SnackbarType.error:
+    case SnackBarType.error:
       return const Color(0xFFFFF6F6);
   }
 }
 
-Color _getBorderColor(SnackbarType type) {
+Color _getBorderColor(SnackBarType type) {
   switch (type) {
-    case SnackbarType.success:
+    case SnackBarType.success:
       return const Color(0xFFCBE1D4);
-    case SnackbarType.info:
+    case SnackBarType.info:
       return const Color(0xFFC2DAF4);
-    case SnackbarType.warning:
+    case SnackBarType.warning:
       return const Color(0xFFEFDDBE);
-    case SnackbarType.error:
+    case SnackBarType.error:
       return const Color(0xFFE8BEBD);
   }
 }
 
-Color _getIconColor(SnackbarType type) {
+Color _getIconColor(SnackBarType type) {
   switch (type) {
-    case SnackbarType.success:
+    case SnackBarType.success:
       return const Color(0xFF04802E);
-    case SnackbarType.info:
+    case SnackBarType.info:
       return const Color(0xFF0D5EBA);
-    case SnackbarType.warning:
+    case SnackBarType.warning:
       return const Color(0xFFDD900D);
-    case SnackbarType.error:
+    case SnackBarType.error:
       return const Color(0xFFCB1A14);
   }
 }
 
-Color _getIconBgColor(SnackbarType type) {
+Color _getIconBgColor(SnackBarType type) {
   switch (type) {
-    case SnackbarType.success:
+    case SnackBarType.success:
       return const Color(0xFFE7F6EC);
-    case SnackbarType.info:
+    case SnackBarType.info:
       return const Color(0xFFE3EFFC);
-    case SnackbarType.warning:
+    case SnackBarType.warning:
       return const Color(0xFFFEF6E7);
-    case SnackbarType.error:
+    case SnackBarType.error:
       return const Color(0xFFFBEAE9);
   }
 }
 
-Color _getIconBorderColor(SnackbarType type) {
+Color _getIconBorderColor(SnackBarType type) {
   switch (type) {
-    case SnackbarType.success:
+    case SnackBarType.success:
       return const Color(0xFFB5E3C4);
-    case SnackbarType.info:
+    case SnackBarType.info:
       return const Color(0xFFC6DDF7);
-    case SnackbarType.warning:
+    case SnackBarType.warning:
       return const Color(0xFFFBE2B7);
-    case SnackbarType.error:
+    case SnackBarType.error:
       return const Color(0xFFF2BCBA);
   }
 }
 
-IconData _getIconData(SnackbarType type) {
+IconData _getIconData(SnackBarType type) {
   switch (type) {
-    case SnackbarType.success:
+    case SnackBarType.success:
       return Icons.check_circle;
-    case SnackbarType.info:
+    case SnackBarType.info:
       return Icons.info;
-    case SnackbarType.warning:
+    case SnackBarType.warning:
       return Icons.warning;
-    case SnackbarType.error:
+    case SnackBarType.error:
       return Icons.error;
   }
 }
 
-void showSnackbar({
+void showSnackBar({
   required BuildContext context,
   required String title,
   String? subtitle,
-  required SnackbarType type,
+  required SnackBarType type,
 }) {
   const radius = 8.0;
   late OverlayEntry overlayEntry;

@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../../components/buttons.dart';
 import '../../../../../components/phone_number_field_prefix_button.dart';
-import '../../../../../components/textfields.dart';
+import '../../../../../components/text_fields.dart';
 import '../../../../../core/constants/enums.dart';
 import '../../../../../core/extensions/string.dart';
 import '../../../../../core/validators.dart';

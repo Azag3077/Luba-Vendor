@@ -130,8 +130,9 @@ class CustomTextField extends StatelessWidget {
                   filled: filled,
                   fillColor: fillColor ?? AppColors.textFieldBg,
                   hintStyle: const TextStyle(
+                    fontWeight: FontWeight.w600,
+                    color: AppColors.hintColor,
                     fontSize: 14.0,
-                    fontWeight: FontWeight.normal,
                   ),
                   error: showError ? const SizedBox.shrink() : null,
                   enabledBorder: OutlineInputBorder(

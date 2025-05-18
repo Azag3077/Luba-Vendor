@@ -153,6 +153,7 @@ class SelectionButton<T> extends StatelessWidget {
     this.onSaved,
     this.margin = const EdgeInsets.only(bottom: 16.0),
     this.validator,
+    this.filled = true,
   });
 
   final GlobalKey<FormFieldState<T>>? fieldKey;
@@ -165,6 +166,7 @@ class SelectionButton<T> extends StatelessWidget {
   final EdgeInsets margin;
   final FormFieldValidator<T>? validator;
   final FormFieldSetter<T>? onSaved;
+  final bool filled;
 
   void _showGenderBottomSheet(BuildContext context, FormFieldState<T> state) {
     showModalBottomSheet(
@@ -234,7 +236,7 @@ class SelectionButton<T> extends StatelessWidget {
                     onPressed: () => _showGenderBottomSheet(context, state),
                     elevation: 0,
                     highlightElevation: 0,
-                    color: AppColors.textFieldBg,
+                    color: filled ? AppColors.textFieldBg : null,
                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     padding: const EdgeInsets.symmetric(
                       horizontal: 16.0,
@@ -246,7 +248,7 @@ class SelectionButton<T> extends StatelessWidget {
                         width: 1.5,
                         color: showError
                             ? Theme.of(context).colorScheme.error
-                            : Colors.black.withValues(alpha: .05),
+                            : AppColors.borderColor,
                       ),
                     ),
                     child: Row(

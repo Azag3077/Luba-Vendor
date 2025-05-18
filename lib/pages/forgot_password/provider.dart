@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../components/snackbar.dart';
+import '../../components/snack_bar.dart';
 import '../../core/routers/app_routes.dart';
 import '../reset_password/page.dart';
 import '../verify_otp/page.dart';
@@ -28,11 +28,11 @@ class _Provider {
     if (result != true || !context.mounted) return;
 
     pushReplacementNamed(context, ResetPasswordPage.routeName);
-    showSnackbar(
+    showSnackBar(
       context: context,
       title: 'Successful',
       subtitle: 'Email verified successfully!!!',
-      type: SnackbarType.success,
+      type: SnackBarType.success,
     );
   }
 }

@@ -5,7 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../components/dialogs.dart';
-import '../../components/snackbar.dart';
+import '../../components/snack_bar.dart';
 import '../../core/routers/router.dart';
 import '../../network/api_services/auth.dart';
 
@@ -66,19 +66,19 @@ class _Notifier extends AutoDisposeNotifier<_State> {
 
     if (result.data!) {
       _startTimer();
-      return showSnackbar(
+      return showSnackBar(
         context: context,
         title: 'Successful',
         subtitle: 'Verification code sent successfully!!!',
-        type: SnackbarType.success,
+        type: SnackBarType.success,
       );
     }
 
-    showSnackbar(
+    showSnackBar(
       context: context,
       title: result.error!.title,
       subtitle: result.error!.message,
-      type: SnackbarType.error,
+      type: SnackBarType.error,
     );
   }
 
@@ -102,11 +102,11 @@ class _Notifier extends AutoDisposeNotifier<_State> {
 
     if (result.data!) return pop(context, true);
 
-    showSnackbar(
+    showSnackBar(
       context: context,
       title: result.error!.title,
       subtitle: result.error!.message,
-      type: SnackbarType.error,
+      type: SnackBarType.error,
     );
   }
 }

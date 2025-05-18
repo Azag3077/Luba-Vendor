@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../components/pin_code_input_field.dart';
-import '../../components/textfields.dart';
+import '../../components/text_fields.dart';
 import '../../core/validators.dart';
 import 'provider.dart';
 

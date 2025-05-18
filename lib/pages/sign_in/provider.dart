@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../components/country_bottom_sheet.dart';
 import '../../components/dialogs.dart';
-import '../../components/snackbar.dart';
+import '../../components/snack_bar.dart';
 import '../../core/constants/constants.dart';
 import '../../core/extensions/num_duration.dart';
 import '../../core/routers/app_routes.dart';
@@ -85,11 +85,11 @@ class _Notifier extends AutoDisposeNotifier<_State> {
 
     if (loginResult.data!) return _handleLoginSuccess(context, phone);
 
-    showSnackbar(
+    showSnackBar(
       context: context,
       title: loginResult.error!.title,
       subtitle: loginResult.error!.message,
-      type: SnackbarType.error,
+      type: SnackBarType.error,
     );
   }
 
