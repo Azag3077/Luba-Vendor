@@ -26,7 +26,7 @@ class LubaVendor extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primary),
         scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Montserrat',
-        fontFamilyFallback: const <String>['Roboto'],
+        fontFamilyFallback: const <String>['Roboto', 'Sans-serif'],
         dividerColor: AppColors.greyOutline,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.white,
